@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const PORT = "http://localhost:8000";
+const PORT = process.env.REACT_APP_API_KEY;
 
 export const Login = async (data) => {
   return axios.post(`${PORT}/api/v1/user/signin`, data);
