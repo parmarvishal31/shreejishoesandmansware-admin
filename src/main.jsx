@@ -9,7 +9,7 @@ import { Toaster } from "react-hot-toast";
 const baseUrl = process.env.REACT_APP_BASE_URL;
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename={"/"}>
+    <BrowserRouter basename={baseUrl}>
       <Provider store={store}>
         <App />
         <Toaster position="top-center" reverseOrder={false} />
