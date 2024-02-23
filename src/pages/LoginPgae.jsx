@@ -34,6 +34,7 @@ function LoginPgae() {
           navigate("/");
         }
       } catch (error) {
+        console.log("error: ", error);
         toast.error(error.response.data.message);
       } finally {
         setLoading(false);
@@ -72,23 +73,32 @@ function LoginPgae() {
               helperText={formik.touched.password && formik.errors.password}
             />
             <div className="mt-3 text-center">
-              <Button
-                fullWidth
-                type="submit"
-                variant="contained"
-                color="primary"
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
-                    <LoadingButton size="small" loading={true} disabled>
-                      <span>disabled</span>
-                    </LoadingButton>
-                  </>
-                ) : (
-                  "Login"
-                )}
-              </Button>
+              {loading ? (
+                <>
+                  <LoadingButton
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    loading={true}
+                    disabled
+                  >
+                    <span>disabled</span>
+                  </LoadingButton>
+                </>
+              ) : (
+                <>
+                  <Button
+                    fullWidth
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={loading}
+                  >
+                    Login
+                  </Button>
+                </>
+              )}
             </div>
           </form>
         </div>
