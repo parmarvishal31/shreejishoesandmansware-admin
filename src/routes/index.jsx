@@ -33,13 +33,8 @@ function Index() {
     <Routes>
       <Route path="/" element={<Private />}>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/addproduct" element={<AddProducts />} />
       </Route>
-      <Route path="/" element={<Public />}>
-        <Route path="/login" element={<LoginPage />} />
-      </Route>
+      <Route path="/" element={<Public />}></Route>
     </Routes>
   );
 }
