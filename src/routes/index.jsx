@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Private from "./private";
 import Public from "./public";
 import LoginPage from "../pages/LoginPgae";
@@ -10,11 +10,11 @@ import AddProducts from "../pages/AddProducts";
 import { useDispatch, useSelector } from "react-redux";
 import { Profile } from "../api/auth";
 import toast from "react-hot-toast";
-import { login } from "../redux/auth/authSlice";
+import { login, logout } from "../redux/auth/authSlice";
 import NotFound from "../pages/NotFound";
 function Index() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   function getProfile(token) {
@@ -24,6 +24,9 @@ function Index() {
       })
       .catch((e) => {
         toast.error(e?.response?.data.message);
+        localStorage.removeItem("token");
+        dispatch(logout());
+        navigate("/login");
       });
   }
   useEffect(() => {
