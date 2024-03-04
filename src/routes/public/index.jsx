@@ -11,7 +11,7 @@ function Public() {
     }
   });
   return (
-    <>
+    <div>
       {checkedLogin ? (
         <>{navigate("/")}</>
       ) : (
@@ -19,7 +19,7 @@ function Public() {
           <Outlet />
         </>
       )}
-    </>
+    </div>
   );
 }
 

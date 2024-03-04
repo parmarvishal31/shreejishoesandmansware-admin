@@ -15,7 +15,7 @@ function Private() {
     }
   });
   return (
-    <>
+    <div>
       {checkedLogin ? (
         <>
           <Outlet />
@@ -23,7 +23,7 @@ function Private() {
       ) : (
         <>{null}</>
       )}
-    </>
+    </div>
   );
 }
 
