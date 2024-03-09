@@ -259,7 +259,7 @@ export default function Dashboard() {
             {/* Separator */}
 
             <div className="flex  self-stretch  justify-between items-center lg:gap-x-6">
-              <div className="sm:font-semibold  flex flex-wrap me-10 sm:block font-serif ">
+              <div className="sm:font-semibold  text-black flex flex-wrap me-10 sm:block font-serif ">
                 Shreeji Shoes & Man's Wear
               </div>
 
@@ -279,7 +279,7 @@ export default function Dashboard() {
                   <Menu.Button className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
                     <span className="h-8 w-8 rounded-full bg-orange-500 flex justify-center items-center text-xl font-semibold">
-                      <span>{user?.name[0]}</span>
+                      <span className="text-black">{user?.name[0]}</span>
                     </span>
                     <span className="hidden lg:flex lg:items-center">
                       <span

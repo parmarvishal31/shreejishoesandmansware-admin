@@ -5,10 +5,14 @@ import { login } from "../redux/auth/authSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Infino from "../components/Spinner/Infino";
+import Round from "../components/Spinner/Round";
+import { useState } from "react";
 
 export default function LoginPgae() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLodding, setIsLodding] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -17,6 +21,7 @@ export default function LoginPgae() {
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       try {
+        setIsLodding(true);
         const res = await Login(values);
         if (res.data.success) {
           localStorage.setItem("token", res.data.token);
@@ -28,6 +33,8 @@ export default function LoginPgae() {
         }
       } catch (error) {
         toast.error(error.response.data.message);
+      } finally {
+        setIsLodding(false);
       }
     },
   });
@@ -69,7 +76,7 @@ export default function LoginPgae() {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white"
                   />
                   {formik.touched.email && formik.errors.email ? (
                     <p className="mt-2 text-sm text-red-600">
@@ -107,12 +114,18 @@ export default function LoginPgae() {
               </div>
 
               <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Sign in
-                </button>
+                {!isLodding ? (
+                  <button
+                    type="submit"
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Sign in
+                  </button>
+                ) : (
+                  <div className="flex justify-center items-center border-2 border-indigo-400 rounded-md px-3 py-1.5">
+                    <Round />
+                  </div>
+                )}
               </div>
             </form>
           </div>
