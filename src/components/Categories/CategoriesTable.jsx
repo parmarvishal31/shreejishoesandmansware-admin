@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const people = [
   {
     name: "Lindsay Walton",
@@ -7,7 +9,9 @@ const people = [
   },
 ];
 
-export default function CategoriesTable() {
+export default function CategoriesTable({ categories }) {
+  console.log("categories: ", categories);
+
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -42,30 +46,31 @@ export default function CategoriesTable() {
                     >
                       Title
                     </th>
-
                     <th
                       scope="col"
-                      className="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      <span className="sr-only">Edit</span>
+                      Active
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {people.map((person) => (
-                    <tr key={person.email}>
-                      <td className="whitespace-nowrap  py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 bg-red-50 ">
-                        <span className="bg-black text-white ">
-                          {person.name}
-                        </span>
+                  {categories.map((category) => (
+                    <tr
+                      key={category.name}
+                      className="cursor-pointer hover:bg-gray-100"
+                    >
+                      <td className="whitespace-nowrap  py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 ">
+                        <span className="">{category?.name}</span>
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a
-                          href="#"
+                        <Link
+                          to={`${category?._id}`}
                           className="text-indigo-600 hover:text-indigo-900"
                         >
-                          Edit<span className="sr-only">, {person.name}</span>
-                        </a>
+                          Edit
+                          <span className="sr-only">, {category?.name}</span>
+                        </Link>
                       </td>
                     </tr>
                   ))}

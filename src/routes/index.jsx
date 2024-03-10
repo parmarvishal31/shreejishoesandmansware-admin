@@ -12,6 +12,7 @@ import { Profile } from "../api/auth";
 import toast from "react-hot-toast";
 import { login, logout } from "../redux/auth/authSlice";
 import NotFound from "../pages/NotFound";
+import CategoryDetails from "../components/Categories/CategoryDetails";
 function Index() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ function Index() {
         <Route path="/" element={<Private />}>
           <Route path="/" element={<Dashboard />}>
             <Route path="/categories" element={<Categories />} />
+            <Route path="/categories/:id" element={<CategoryDetails />} />
           </Route>
         </Route>
         <Route path="/" element={<Public />}>
