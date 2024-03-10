@@ -1,7 +1,7 @@
 import React from "react";
 
 function Round() {
-  return <span className="loading loading-spinner text-primary"></span>;
+  return <span className="">Lodding</span>;
 }
 
 export default Round;

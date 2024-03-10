@@ -1,7 +1,7 @@
 import React from "react";
 
 function Infino() {
-  return <span className="loading loading-infinity loading-lg"></span>;
+  return <span className="">Lodding</span>;
 }
 
 export default Infino;
